@@ -1,2 +1,2 @@
-# 05-Pelicula
+# 05-Peliculas
 App de peliculas

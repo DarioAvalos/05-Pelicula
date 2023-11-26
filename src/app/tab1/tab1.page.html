@@ -1,0 +1,23 @@
+
+<ion-content>
+
+  <!-- Esto es como era antes y ahora se reemplazo por Swiper
+  <ion-slides>
+    <ion-slide *ngFor="let pelicula of peliculasRecientes">
+      <h1> {{ pelicula.title }} </h1>
+    </ion-slide>
+  </ion-slides> -->
+  
+  <swiper-container slides-per-view= "1.2"
+                    free-Mode= "true">
+    <swiper-slide *ngFor="let pelicula of peliculasRecientes">
+      
+      <ion-card>
+        <img [src]="pelicula.backdrop_path | imagen">
+      </ion-card>
+
+    </swiper-slide>
+  </swiper-container>
+
+
+</ion-content>

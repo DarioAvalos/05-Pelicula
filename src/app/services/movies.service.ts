@@ -12,6 +12,8 @@ const apiKey = environment.apiKey;
 })
 export class MoviesService {
 
+  private popularesPage = 0;
+
   constructor( private http: HttpClient ) { }
 
   private ejecutarQuery<T> ( query: string ) {
@@ -19,6 +21,16 @@ export class MoviesService {
     query += `&api_key=${ apiKey }&language=es&include_image_language=es`;
 
     return this.http.get<T>( query );
+  }
+
+  getPopulares() {
+
+    this.popularesPage++;
+
+    const query = `/discover/movie?sort_by=popularity.desc&page=${ this.popularesPage}`;
+
+    return this.ejecutarQuery<RespuestaMDB>(query);
+
   }
 
   getFeature(){

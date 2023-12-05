@@ -10,7 +10,7 @@ import { Pelicula, RespuestaMDB } from '../interfaces/interfaces';
 export class Tab1Page implements OnInit {
 
   peliculasRecientes: Pelicula[] = [];
-
+  populares: Pelicula[] = [];
 
   constructor( private moviesService: MoviesService ) {
 
@@ -22,7 +22,22 @@ export class Tab1Page implements OnInit {
       console.log('Resp', resp);
       this.peliculasRecientes = resp.results;
 
-    } );
+    });
+
+    this.getPopulares();
+  }
+
+  cargarMas(){
+    this.getPopulares();
+  }
+
+  getPopulares(){
+    this.moviesService.getPopulares()
+    .subscribe( resp => {
+      // console.log('Populares', resp);
+      const arrTemp = [ ...this.populares, ...resp.results];
+      this.populares = arrTemp;
+    });
   }
 
 }

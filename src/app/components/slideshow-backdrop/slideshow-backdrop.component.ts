@@ -13,7 +13,7 @@ export class SlideshowBackdropComponent  implements OnInit {
   
   @Input() peliculas: Pelicula[] = [];
   
-  constructor( private modalCtrl: ModalController) { }
+  constructor( private modalCtrl: ModalController ) { }
 
   ngOnInit() {}
 

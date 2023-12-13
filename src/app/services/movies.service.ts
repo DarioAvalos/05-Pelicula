@@ -33,6 +33,10 @@ export class MoviesService {
 
   }
 
+  getBuscarPelicula( texto: string ){
+    return this.ejecutarQuery<RespuestaMDB>(`/search/movie?query=${ texto }`);
+  }
+
   getFeature(){
 
     const hoy = new Date();

@@ -32,8 +32,8 @@ export class DataLocalService {
 
   guardarPelicula( pelicula: PeliculaDetalle ){
 
-    let existe = false;
-    let mensaje = "";
+    let existe = false!;
+    let mensaje = ""!;
 
     for ( const peli of this.peliculas ) {
       if ( peli.id === pelicula.id ){

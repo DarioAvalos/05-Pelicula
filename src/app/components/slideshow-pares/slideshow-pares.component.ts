@@ -11,6 +11,7 @@ import { DetalleComponent } from '../detalle/detalle.component';
 export class SlideshowParesComponent  implements OnInit {
 
   @Input() peliculas: Pelicula[] = [];
+  
   @Output() cargarMas = new EventEmitter();
 
   constructor( private modalCtrl: ModalController ) { }

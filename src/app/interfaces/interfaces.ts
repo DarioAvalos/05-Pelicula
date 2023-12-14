@@ -6,10 +6,14 @@ export interface RespuestaMDB {
   total_results: number;
 }
 
+export interface GenresResponse {
+  genres: Genre[];
+}
+
 export interface Pelicula {
-  adult: boolean;
+  adult?: boolean;
   backdrop_path: string;
-  genre_ids: number[];
+  genre_ids?: number[];
   id: number;
   original_language: string;
   original_title: string;
@@ -69,7 +73,7 @@ interface Productioncompany {
   origin_country: string;
 }
 
-interface Genre {
+export interface Genre {
   id: number;
   name: string;
 }

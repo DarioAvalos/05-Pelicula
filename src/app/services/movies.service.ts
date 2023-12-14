@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PeliculaDetalle, RespuestaCredits, RespuestaMDB } from '../interfaces/interfaces';
+import { Genre, GenresResponse, PeliculaDetalle, RespuestaCredits, RespuestaMDB } from '../interfaces/interfaces';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 const URL = environment.url;
 const apiKey = environment.apiKey;
@@ -13,6 +14,8 @@ const apiKey = environment.apiKey;
 export class MoviesService {
 
   private popularesPage = 0;
+  generos: Genre[] = [];
+  
 
   constructor( private http: HttpClient ) { }
 
@@ -64,6 +67,36 @@ export class MoviesService {
 
   getActoresPelicula( id: number ){
     return this.ejecutarQuery<RespuestaCredits>(`/movie/${ id }/credits?a=1`);
+  }
+
+  cargarGeneros(): Promise<Genre[]> {
+
+    return new Promise( resolve => {
+      this.ejecutarQuery<GenresResponse>(`/genre/movie/list?a=1`).subscribe( resp => {
+        this.generos = resp.genres;
+        resolve(this.generos);
+      });
+    });
+
+
+    // return new Promise ( resolve => {
+
+    //   this.ejecutarQuery(`/genre/movie/list?a=1`)
+    //     .subscribe( resp => {
+    //       this.generos = resp['genres'];
+    //       console.log(this.generos);
+    //       resolve(this.generos)
+    //     });
+
+    // });
+
+    // return this.ejecutarQuery<Genre[]>('/genre/movie/list?a=1')
+    // .pipe(
+    //   map(data => data['genres'])
+    // )
+    // .toPromise();
+
+
   }
 
 }

@@ -11,6 +11,7 @@ import { DetalleComponent } from '../detalle/detalle.component';
 export class SlideshowPosterComponent  implements OnInit {
 
   @Input() peliculas: Pelicula[] = [];
+  
 
   constructor( private modalCtrl: ModalController ) { }
 

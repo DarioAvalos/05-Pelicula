@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Cast, PeliculaDetalle } from 'src/app/interfaces/interfaces';
+import { DataLocalService } from 'src/app/services/data-local.service';
 import { MoviesService } from 'src/app/services/movies.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class DetalleComponent  implements OnInit {
   oculto = 150;
 
   constructor( private movieService: MoviesService, 
-               private modalCtrl: ModalController ) { }
+               private modalCtrl: ModalController,
+               private dataLocal: DataLocalService ) { }
 
   ngOnInit() {
     // console.log('ID', this.id );
@@ -41,7 +43,7 @@ export class DetalleComponent  implements OnInit {
   }
 
   favorito(){
-
+    this.dataLocal.guardarPelicula( this.pelicula );
   }
 
 }

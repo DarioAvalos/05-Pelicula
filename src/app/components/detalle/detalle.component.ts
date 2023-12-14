@@ -16,6 +16,7 @@ export class DetalleComponent  implements OnInit {
   pelicula: PeliculaDetalle = {};
   actores: Cast [] = [];
   oculto = 150;
+  estrella = 'star-outline';
 
   constructor( private movieService: MoviesService, 
                private modalCtrl: ModalController,
@@ -23,6 +24,9 @@ export class DetalleComponent  implements OnInit {
 
   ngOnInit() {
     // console.log('ID', this.id );
+
+    this.dataLocal.existePelicula( this.id )
+      .then( existe => this.estrella = ( existe ) ? 'star' : 'star-outline');
 
     this.movieService.getPeliculaDetalle( this.id )
         .subscribe( resp => {
@@ -43,7 +47,8 @@ export class DetalleComponent  implements OnInit {
   }
 
   favorito(){
-    this.dataLocal.guardarPelicula( this.pelicula );
+    const existe = this.dataLocal.guardarPelicula( this.pelicula );
+    this.estrella = ( existe ) ? 'star' : 'star-outline';
   }
 
 }

@@ -7,9 +7,9 @@
 
 <swiper-container slides-per-view= "1.2"
                   free-Mode= "true">
-<swiper-slide *ngFor="let pelicula of peliculas">
+<swiper-slide *ngFor="let pelicula of peliculas | filtroImagen">
 
-<ion-card (click)="verDetalle( pelicula.id )">
+<ion-card mode="md" (click)="verDetalle( pelicula.id )">
     <img [src]="pelicula.backdrop_path | imagen">
 </ion-card>
 
